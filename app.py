@@ -26,9 +26,10 @@ LANG_TOKEN_MAPPING = {
 
 # Utility Functions
 def encode_input(text, target_lang, tokenizer, seq_len=128):
-    target_lang_token = LANG_TOKEN_MAPPING[target_lang]
+    task_prefix = f"translate English to {target_lang}: "
+    input_text = task_prefix + text
     input_ids = tokenizer.encode(
-        target_lang_token + text,
+        input_text,
         return_tensors='pt',
         padding='max_length',
         truncation=True,
