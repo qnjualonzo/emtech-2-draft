@@ -10,7 +10,7 @@ st.title("Multilingual Translation with MT5")
 
 @st.cache_resource
 def load_model_and_tokenizer():
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_REPO)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_REPO, use_fast=False)
     model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_REPO)
     model = model.cuda() if torch.cuda.is_available() else model
     return tokenizer, model
